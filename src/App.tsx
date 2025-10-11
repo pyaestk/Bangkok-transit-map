@@ -2,26 +2,30 @@ import "./App.css";
 import NavBar from "./component/NavBar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Map from "./pages/Map";
 import Planner from "./pages/Planner";
 import Stations from "./pages/Stations";
 import TrainRoutes from "./pages/TrainRoutes";
 import Fares from "./pages/Fares";
-import Alerts from "./pages/Alerts";
 import About from "./pages/About";
 
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-gray-950">
       {/* Navbar at the top */}
       <NavBar />
 
       {/* Main content area */}
-      <main className="flex-1 p-6 bg-gray-900">
+      <main className="flex-1 p-6">
         <Routes>
           <Route
             path="/"
             element={ <Home/> }
+          />
+          <Route
+            path="/map"
+            element={ <Map/> }
           />
           <Route
             path="/planner"
@@ -35,14 +39,9 @@ function App() {
             path="/stations"
             element={<Stations/>}
           />
-
           <Route
             path="/fares"
             element={<Fares/>}
-          />
-          <Route
-            path="/alerts"
-            element={<Alerts/>}
           />
           <Route
             path="/about"

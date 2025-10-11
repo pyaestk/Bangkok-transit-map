@@ -1,0 +1,61 @@
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import FiltersCard from "../component/mappage/FiltersCard";
+
+export default function Map() {
+  return (
+    <div className="flex flex-col md:flex-row gap-5 text-white">
+      {/* Sidebar */}
+      <div className="w-full md:w-80">
+        <FiltersCard />
+      </div>
+
+      {/* Main */}
+      <div className="relative border border-white/10 h-full flex-1 overflow-hidden rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg text-white">
+        <div className="bg-white rounded-lg h-[80vh] flex items-center justify-center overflow-hidden relative">
+          <TransformWrapper
+            initialScale={0.5}
+            minScale={0.1}
+            maxScale={1}
+            centerOnInit
+            wheel={{ step: 0.1 }} // supports trackpad two-finger zoom
+            doubleClick={{ disabled: true }}
+          >
+            {({ zoomIn, zoomOut, resetTransform }) => (
+              <>
+                <TransformComponent>
+                  <img
+                    src="/images/BangkokTransitMap.png"
+                    alt="Bangkok Metro Map"
+                    className="max-w-none select-none"
+                  />
+                </TransformComponent>
+
+                {/* Zoom Controls */}
+                <div className="absolute top-3 right-3 flex flex-col gap-2 z-20">
+                  <button
+                    onClick={() => zoomIn()}
+                    className="px-3 py-2 rounded-lg bg-black/60 text-white hover:bg-black/80"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => zoomOut()}
+                    className="px-3 py-2 rounded-lg bg-black/60 text-white hover:bg-black/80"
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={() => resetTransform()}
+                    className="px-3 py-2 rounded-lg bg-black/60 text-white hover:bg-black/80"
+                  >
+                    ⟳
+                  </button>
+                </div>
+              </>
+            )}
+          </TransformWrapper>
+        </div>
+      </div>
+    </div>
+  );
+}
